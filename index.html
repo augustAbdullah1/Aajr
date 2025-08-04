@@ -399,7 +399,7 @@
             text-align: center;
         }
 
-        /* الرسوم المتحركة */
+        /* الرسوم المتحركة المتقدمة */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -415,12 +415,251 @@
             to { transform: translateX(0); }
         }
 
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0,-30px,0); }
+            70% { transform: translate3d(0,-15px,0); }
+            90% { transform: translate3d(0,-4px,0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(72, 187, 120, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(72, 187, 120, 0.8), 0 0 30px rgba(72, 187, 120, 0.6); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .fade-in {
             animation: fadeIn 0.6s ease-out;
         }
 
         .pulse {
             animation: pulse 2s infinite;
+        }
+
+        .bounce {
+            animation: bounce 1s ease-in-out;
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        .gradient-shift {
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        /* تأثيرات متقدمة للبطاقات */
+        .card-hover {
+            transition: all var(--transition-normal);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* تأثيرات الأزرار المتقدمة */
+        .btn-3d {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-3d:hover::before {
+            left: 100%;
+        }
+
+        /* تأثيرات النص */
+        .text-gradient {
+            background: var(--gradient-success);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* تأثيرات الخلفية */
+        .bg-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        /* تأثيرات التحميل */
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: loadingDots 1.5s infinite;
+        }
+
+        @keyframes loadingDots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        /* إشعارات الإنجازات */
+        .achievement-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gradient-success);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            z-index: 10000;
+            animation: achievementPop 0.5s ease-out;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        .achievement-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .achievement-content i {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+        }
+
+        .achievement-content h4 {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .achievement-content p {
+            font-size: var(--font-size-sm);
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        @keyframes achievementPop {
+            0% { 
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* تحسينات إضافية */
+        .flex {
+            display: flex;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .items-start {
+            align-items: flex-start;
+        }
+
+        .gap-2 {
+            gap: var(--spacing-sm);
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .text-red-500 {
+            color: #f56565;
+        }
+
+        .text-gray-400 {
+            color: #a0aec0;
+        }
+
+        .text-yellow-400 {
+            color: #f6e05e;
+        }
+
+        .text-green-400 {
+            color: #68d391;
+        }
+
+        .text-gray-500 {
+            color: #718096;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-3 {
+            gap: var(--spacing-md);
+        }
+
+        .p-4 {
+            padding: var(--spacing-lg);
+        }
+
+        .rounded-lg {
+            border-radius: var(--border-radius-lg);
         }
 
         /* شريط التقدم */
@@ -822,6 +1061,31 @@
                 <button class="btn btn-primary" id="saveSettings">حفظ الإعدادات</button>
                 <button class="btn btn-secondary" id="closeSettings">إغلاق</button>
             </div>
+            <div class="grid grid-2 mt-4">
+                <div>
+                    <h4 class="font-semibold mb-2">البيانات</h4>
+                    <button class="btn btn-secondary w-full mb-2" onclick="exportData()">
+                        <i class="fas fa-download"></i>
+                        تصدير البيانات
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(this.files[0])">
+                    <button class="btn btn-secondary w-full" onclick="document.getElementById('importFile').click()">
+                        <i class="fas fa-upload"></i>
+                        استيراد البيانات
+                    </button>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-2">التقارير</h4>
+                    <button class="btn btn-secondary w-full mb-2" onclick="showAdvancedReport()">
+                        <i class="fas fa-chart-bar"></i>
+                        تقرير متقدم
+                    </button>
+                    <button class="btn btn-secondary w-full" onclick="showAchievements()">
+                        <i class="fas fa-trophy"></i>
+                        الإنجازات
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -895,11 +1159,33 @@
         let counter = 0;
         let target = 100;
         let isZenMode = false;
+        let currentAudio = null;
+        let isPlaying = false;
         let settings = {
             notifications: false,
             vibration: false,
             location: '',
-            theme: 'dark'
+            theme: 'dark',
+            autoSave: true,
+            soundEnabled: true,
+            hapticFeedback: true,
+            dailyGoal: 100,
+            reminderInterval: 30
+        };
+        
+        // إحصائيات متقدمة
+        let advancedStats = {
+            totalDhikr: 0,
+            dailyStreak: 0,
+            longestStreak: 0,
+            averagePerDay: 0,
+            bestDay: 0,
+            categories: {
+                morning: 0,
+                afternoon: 0,
+                evening: 0,
+                night: 0
+            }
         };
 
         // تسجيل Service Worker
@@ -926,25 +1212,36 @@
             
             // تحميل الإعدادات
             loadSettings();
-            showLoading(20);
+            showLoading(15);
+            
+            // تحميل الإحصائيات المتقدمة
+            loadAdvancedStats();
+            showLoading(25);
             
             // إعداد الأحداث
             setupEventListeners();
-            showLoading(40);
+            showLoading(35);
             
             // طلب إذن الإشعارات
             requestNotificationPermission();
-            showLoading(50);
+            showLoading(45);
+            
+            // إعداد التذكيرات التلقائية
+            setupReminders();
+            showLoading(55);
             
             // تحميل البيانات
             await loadPrayerTimes();
-            showLoading(60);
+            showLoading(65);
             
             await loadQuran();
-            showLoading(80);
+            showLoading(75);
             
             await loadDuas();
-            showLoading(90);
+            showLoading(85);
+            
+            await loadTasbih();
+            showLoading(95);
             
             loadStats();
             showLoading(100);
@@ -953,6 +1250,9 @@
             setTimeout(() => {
                 document.querySelector('.loading-bar').style.display = 'none';
             }, 500);
+            
+            // عرض رسالة ترحيب
+            showWelcomeMessage();
         }
 
         // إعداد الأحداث
@@ -980,17 +1280,75 @@
             document.getElementById('zenMode').addEventListener('click', toggleZenMode);
         }
 
-        // دوال العداد
+        // دوال العداد المتطورة
         function incrementCounter() {
             counter++;
             updateCounterDisplay();
             updateProgress();
+            updateAdvancedStats();
             saveCounter();
-            showNotification('تم إضافة ذكر واحد', 'success');
             
-            if (settings.vibration && navigator.vibrate) {
-                navigator.vibrate(100);
+            // تأثيرات متقدمة
+            if (settings.soundEnabled) {
+                playSound('click');
             }
+            
+            if (settings.hapticFeedback && navigator.vibrate) {
+                navigator.vibrate([50, 50, 100]);
+            }
+            
+            // تأثير بصري
+            animateCounter();
+            
+            // إشعار ذكي
+            showSmartNotification();
+            
+            // تحديث الإحصائيات في الوقت الفعلي
+            updateRealTimeStats();
+        }
+        
+        function animateCounter() {
+            const counterDisplay = document.getElementById('counterDisplay');
+            counterDisplay.style.transform = 'scale(1.1)';
+            counterDisplay.style.color = '#48bb78';
+            
+            setTimeout(() => {
+                counterDisplay.style.transform = 'scale(1)';
+                counterDisplay.style.color = '';
+            }, 200);
+        }
+        
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            if (type === 'click') {
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            }
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+        
+        function showSmartNotification() {
+            const messages = [
+                'أحسنت! استمر في الذكر',
+                'الله يبارك في عملك',
+                'ذكر جميل، واصل التقدم',
+                'أحسنت! دعاء جميل',
+                'الله يثبتك على الطاعة'
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            showNotification(randomMessage, 'success');
         }
 
         function decrementCounter() {
@@ -1346,29 +1704,165 @@
             }
         }
 
-        // تحميل الأدعية
+        // تحميل الأدعية المتطورة
         async function loadDuas() {
             const duas = [
-                { title: 'دعاء الصباح', text: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ' },
-                { title: 'دعاء المساء', text: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ' },
-                { title: 'دعاء دخول المسجد', text: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ' },
-                { title: 'دعاء الخروج من المسجد', text: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ وَرَحْمَتِكَ' },
-                { title: 'دعاء الطعام', text: 'بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ' },
-                { title: 'دعاء السفر', text: 'اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى' }
+                { 
+                    title: 'دعاء الصباح', 
+                    text: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ',
+                    category: 'صباح',
+                    times: ['صباحاً'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء المساء', 
+                    text: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ',
+                    category: 'مساء',
+                    times: ['مساءً'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء دخول المسجد', 
+                    text: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',
+                    category: 'مسجد',
+                    times: ['قبل الصلاة'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء الخروج من المسجد', 
+                    text: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ وَرَحْمَتِكَ',
+                    category: 'مسجد',
+                    times: ['بعد الصلاة'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء الطعام', 
+                    text: 'بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ',
+                    category: 'طعام',
+                    times: ['قبل الأكل'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء السفر', 
+                    text: 'اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَى',
+                    category: 'سفر',
+                    times: ['قبل السفر'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء الاستيقاظ', 
+                    text: 'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
+                    category: 'صباح',
+                    times: ['عند الاستيقاظ'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء النوم', 
+                    text: 'بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ',
+                    category: 'مساء',
+                    times: ['قبل النوم'],
+                    favorite: false
+                },
+                { 
+                    title: 'دعاء دخول المنزل', 
+                    text: 'بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا',
+                    category: 'منزل',
+                    times: ['عند الدخول'],
+                    favorite: false
+                }
             ];
             
-            const duasHtml = duas.map(dua => `
-                <div class="card">
-                    <h4 class="font-bold mb-2">${dua.title}</h4>
-                    <p class="text-sm">${dua.text}</p>
-                    <button class="btn btn-primary btn-sm mt-2" onclick="copyDua('${dua.text}')">
-                        <i class="fas fa-copy"></i>
-                        نسخ
-                    </button>
+            const duasHtml = `
+                <div class="mb-3">
+                    <div class="flex gap-2 mb-3">
+                        <button class="btn btn-secondary btn-sm" onclick="filterDuas('all')">الكل</button>
+                        <button class="btn btn-secondary btn-sm" onclick="filterDuas('صباح')">الصباح</button>
+                        <button class="btn btn-secondary btn-sm" onclick="filterDuas('مساء')">المساء</button>
+                        <button class="btn btn-secondary btn-sm" onclick="filterDuas('مسجد')">المسجد</button>
+                        <button class="btn btn-secondary btn-sm" onclick="filterDuas('favorite')">المفضلة</button>
+                    </div>
                 </div>
-            `).join('');
+                <div class="grid grid-3" id="duasGrid">
+                    ${duas.map(dua => `
+                        <div class="card card-hover" data-category="${dua.category}" data-favorite="${dua.favorite}">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold">${dua.title}</h4>
+                                <button class="btn btn-secondary btn-icon" onclick="toggleFavorite('${dua.title}')" title="إضافة للمفضلة">
+                                    <i class="fas fa-heart ${dua.favorite ? 'text-red-500' : 'text-gray-400'}"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm mb-2">${dua.text}</p>
+                            <div class="text-xs text-muted mb-2">
+                                <i class="fas fa-tag"></i> ${dua.category}
+                                <br>
+                                <i class="fas fa-clock"></i> ${dua.times.join(', ')}
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn btn-primary btn-sm" onclick="copyDua('${dua.text}')">
+                                    <i class="fas fa-copy"></i>
+                                    نسخ
+                                </button>
+                                <button class="btn btn-secondary btn-sm" onclick="shareDua('${dua.title}', '${dua.text}')">
+                                    <i class="fas fa-share"></i>
+                                    مشاركة
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
             
-            document.getElementById('duasGrid').innerHTML = duasHtml;
+            document.getElementById('duasGrid').parentElement.innerHTML = duasHtml;
+        }
+        
+        // تصفية الأدعية
+        function filterDuas(category) {
+            const duas = document.querySelectorAll('#duasGrid .card');
+            duas.forEach(dua => {
+                if (category === 'all') {
+                    dua.style.display = 'block';
+                } else if (category === 'favorite') {
+                    const isFavorite = dua.getAttribute('data-favorite') === 'true';
+                    dua.style.display = isFavorite ? 'block' : 'none';
+                } else {
+                    const duaCategory = dua.getAttribute('data-category');
+                    dua.style.display = duaCategory === category ? 'block' : 'none';
+                }
+            });
+        }
+        
+        // تبديل المفضلة
+        function toggleFavorite(duaTitle) {
+            const heartIcon = event.target.closest('button').querySelector('i');
+            const isFavorite = heartIcon.classList.contains('text-red-500');
+            
+            if (isFavorite) {
+                heartIcon.classList.remove('text-red-500');
+                heartIcon.classList.add('text-gray-400');
+                showNotification('تم إزالة الدعاء من المفضلة', 'info');
+            } else {
+                heartIcon.classList.remove('text-gray-400');
+                heartIcon.classList.add('text-red-500');
+                showNotification('تم إضافة الدعاء للمفضلة', 'success');
+            }
+        }
+        
+        // مشاركة الدعاء
+        function shareDua(title, text) {
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: text,
+                    url: window.location.href
+                }).then(() => {
+                    showNotification('تم مشاركة الدعاء بنجاح', 'success');
+                }).catch(() => {
+                    showNotification('فشل في مشاركة الدعاء', 'error');
+                });
+            } else {
+                // نسخ إلى الحافظة كبديل
+                copyDua(text);
+            }
         }
 
         // تحميل الإحصائيات
@@ -1537,6 +2031,581 @@
 
         // تحميل العداد المحفوظ
         loadCounter();
+        
+        // ===== الميزات المتقدمة الإضافية =====
+        
+        // نظام الإنجازات
+        const achievements = [
+            { id: 'first_dhikr', title: 'أول ذكر', description: 'أول ذكر لك في التطبيق', icon: 'fas fa-star', unlocked: false },
+            { id: 'ten_dhikr', title: 'عشرة أذكار', description: 'أكملت 10 أذكار', icon: 'fas fa-star', unlocked: false },
+            { id: 'hundred_dhikr', title: 'مائة ذكر', description: 'أكملت 100 ذكر', icon: 'fas fa-crown', unlocked: false },
+            { id: 'daily_goal', title: 'الهدف اليومي', description: 'حققت هدفك اليومي', icon: 'fas fa-target', unlocked: false },
+            { id: 'week_streak', title: 'أسبوع متواصل', description: '7 أيام متتالية', icon: 'fas fa-fire', unlocked: false },
+            { id: 'month_streak', title: 'شهر متواصل', description: '30 يوم متتالي', icon: 'fas fa-trophy', unlocked: false }
+        ];
+        
+        // فحص الإنجازات
+        function checkAchievements() {
+            const totalCount = parseInt(localStorage.getItem('ajjar_total_count') || '0');
+            const streak = parseInt(localStorage.getItem('ajjar_streak') || '0');
+            
+            achievements.forEach(achievement => {
+                let shouldUnlock = false;
+                
+                switch(achievement.id) {
+                    case 'first_dhikr':
+                        shouldUnlock = totalCount >= 1;
+                        break;
+                    case 'ten_dhikr':
+                        shouldUnlock = totalCount >= 10;
+                        break;
+                    case 'hundred_dhikr':
+                        shouldUnlock = totalCount >= 100;
+                        break;
+                    case 'daily_goal':
+                        shouldUnlock = counter >= target;
+                        break;
+                    case 'week_streak':
+                        shouldUnlock = streak >= 7;
+                        break;
+                    case 'month_streak':
+                        shouldUnlock = streak >= 30;
+                        break;
+                }
+                
+                if (shouldUnlock && !achievement.unlocked) {
+                    unlockAchievement(achievement);
+                }
+            });
+        }
+        
+        // فتح الإنجاز
+        function unlockAchievement(achievement) {
+            achievement.unlocked = true;
+            showNotification(`🎉 إنجاز جديد: ${achievement.title}!`, 'success');
+            
+            // تأثير بصري للإنجاز
+            const achievementNotification = document.createElement('div');
+            achievementNotification.className = 'achievement-notification';
+            achievementNotification.innerHTML = `
+                <div class="achievement-content">
+                    <i class="${achievement.icon}"></i>
+                    <h4>${achievement.title}</h4>
+                    <p>${achievement.description}</p>
+                </div>
+            `;
+            document.body.appendChild(achievementNotification);
+            
+            setTimeout(() => {
+                achievementNotification.remove();
+            }, 3000);
+            
+            // حفظ الإنجازات
+            localStorage.setItem('ajjar_achievements', JSON.stringify(achievements));
+        }
+        
+        // تحميل الإنجازات
+        function loadAchievements() {
+            const saved = localStorage.getItem('ajjar_achievements');
+            if (saved) {
+                const savedAchievements = JSON.parse(saved);
+                achievements.forEach(achievement => {
+                    const savedAchievement = savedAchievements.find(a => a.id === achievement.id);
+                    if (savedAchievement) {
+                        achievement.unlocked = savedAchievement.unlocked;
+                    }
+                });
+            }
+        }
+        
+        // نظام التذكيرات الذكية
+        function setupSmartReminders() {
+            const now = new Date();
+            const hour = now.getHours();
+            
+            let reminderMessage = '';
+            
+            if (hour >= 5 && hour < 12) {
+                reminderMessage = 'صباح الخير! وقت مثالي لذكر الصباح';
+            } else if (hour >= 12 && hour < 17) {
+                reminderMessage = 'وقت الظهر! تذكر الأذكار';
+            } else if (hour >= 17 && hour < 21) {
+                reminderMessage = 'مساء الخير! وقت ذكر المساء';
+            } else {
+                reminderMessage = 'ليلة طيبة! ذكر جميل قبل النوم';
+            }
+            
+            // إرسال تذكير ذكي كل ساعة
+            setInterval(() => {
+                if (settings.notifications && counter < target) {
+                    showNotification(reminderMessage, 'info');
+                }
+            }, 60 * 60 * 1000); // كل ساعة
+        }
+        
+        // نظام التصدير والاستيراد
+        function exportData() {
+            const data = {
+                counter: counter,
+                stats: localStorage.getItem('ajjar_stats'),
+                totalCount: localStorage.getItem('ajjar_total_count'),
+                streak: localStorage.getItem('ajjar_streak'),
+                settings: localStorage.getItem('ajjar_settings'),
+                achievements: localStorage.getItem('ajjar_achievements'),
+                advancedStats: localStorage.getItem('ajjar_advanced_stats')
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `ajjar-backup-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showNotification('تم تصدير البيانات بنجاح', 'success');
+        }
+        
+        function importData(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    // استيراد البيانات
+                    if (data.counter) localStorage.setItem('ajjar_counter', data.counter);
+                    if (data.stats) localStorage.setItem('ajjar_stats', data.stats);
+                    if (data.totalCount) localStorage.setItem('ajjar_total_count', data.totalCount);
+                    if (data.streak) localStorage.setItem('ajjar_streak', data.streak);
+                    if (data.settings) localStorage.setItem('ajjar_settings', data.settings);
+                    if (data.achievements) localStorage.setItem('ajjar_achievements', data.achievements);
+                    if (data.advancedStats) localStorage.setItem('ajjar_advanced_stats', data.advancedStats);
+                    
+                    // إعادة تحميل التطبيق
+                    location.reload();
+                    showNotification('تم استيراد البيانات بنجاح', 'success');
+                } catch (error) {
+                    showNotification('خطأ في استيراد البيانات', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+        
+        // نظام الإحصائيات المتقدمة
+        function generateAdvancedReport() {
+            const totalCount = parseInt(localStorage.getItem('ajjar_total_count') || '0');
+            const streak = parseInt(localStorage.getItem('ajjar_streak') || '0');
+            const savedStats = JSON.parse(localStorage.getItem('ajjar_stats') || '{}');
+            
+            const days = Object.keys(savedStats).length;
+            const averagePerDay = days > 0 ? Math.round(totalCount / days) : 0;
+            
+            const report = `
+                📊 تقرير إحصائيات آجر
+                
+                إجمالي الأذكار: ${totalCount}
+                الأيام المتتالية: ${streak}
+                متوسط الأذكار يومياً: ${averagePerDay}
+                عدد الأيام النشطة: ${days}
+                
+                أفضل يوم: ${getBestDay(savedStats)}
+                الوقت المفضل: ${getFavoriteTime(advancedStats.categories)}
+                
+                🎯 الإنجازات المحققة: ${achievements.filter(a => a.unlocked).length}/${achievements.length}
+            `;
+            
+            return report;
+        }
+        
+        function getBestDay(stats) {
+            let bestDay = { date: '', count: 0 };
+            Object.keys(stats).forEach(date => {
+                if (stats[date].count > bestDay.count) {
+                    bestDay = { date, count: stats[date].count };
+                }
+            });
+            return bestDay.date ? `${bestDay.date} (${bestDay.count} ذكر)` : 'لا توجد بيانات';
+        }
+        
+        function getFavoriteTime(categories) {
+            const times = Object.values(categories);
+            const maxIndex = times.indexOf(Math.max(...times));
+            const timeNames = ['الصباح', 'الظهر', 'المساء', 'الليل'];
+            return timeNames[maxIndex];
+        }
+        
+        // تحسين الأداء
+        function optimizePerformance() {
+            // تنظيف البيانات القديمة
+            const savedStats = JSON.parse(localStorage.getItem('ajjar_stats') || '{}');
+            const thirtyDaysAgo = new Date();
+            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+            
+            Object.keys(savedStats).forEach(date => {
+                const statDate = new Date(date);
+                if (statDate < thirtyDaysAgo) {
+                    delete savedStats[date];
+                }
+            });
+            
+            localStorage.setItem('ajjar_stats', JSON.stringify(savedStats));
+        }
+        
+        // عرض التقرير المتقدم
+        function showAdvancedReport() {
+            const report = generateAdvancedReport();
+            const reportModal = document.createElement('div');
+            reportModal.className = 'modal show';
+            reportModal.innerHTML = `
+                <div class="modal-content">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">التقرير المتقدم</h3>
+                        <button class="btn btn-secondary btn-icon" onclick="this.closest('.modal').remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="bg-pattern p-4 rounded-lg">
+                        <pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-primary);">${report}</pre>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary" onclick="copyReport('${report}')">
+                            <i class="fas fa-copy"></i>
+                            نسخ التقرير
+                        </button>
+                        <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">
+                            إغلاق
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(reportModal);
+        }
+        
+        // عرض الإنجازات
+        function showAchievements() {
+            const achievementsHtml = achievements.map(achievement => `
+                <div class="card ${achievement.unlocked ? 'glow' : ''}" style="opacity: ${achievement.unlocked ? '1' : '0.6'}">
+                    <div class="flex items-center gap-3">
+                        <i class="${achievement.icon} ${achievement.unlocked ? 'text-yellow-400' : 'text-gray-400'}" style="font-size: 2rem;"></i>
+                        <div>
+                            <h4 class="font-bold">${achievement.title}</h4>
+                            <p class="text-sm text-muted">${achievement.description}</p>
+                            <span class="text-xs ${achievement.unlocked ? 'text-green-400' : 'text-gray-500'}">
+                                ${achievement.unlocked ? '✅ محقق' : '🔒 غير محقق'}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            const achievementsModal = document.createElement('div');
+            achievementsModal.className = 'modal show';
+            achievementsModal.innerHTML = `
+                <div class="modal-content">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">الإنجازات</h3>
+                        <button class="btn btn-secondary btn-icon" onclick="this.closest('.modal').remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-2">
+                        ${achievementsHtml}
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">
+                            إغلاق
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(achievementsModal);
+        }
+        
+        // نسخ التقرير
+        function copyReport(report) {
+            navigator.clipboard.writeText(report).then(() => {
+                showNotification('تم نسخ التقرير بنجاح', 'success');
+            });
+        }
+        
+        // تشغيل الميزات المتقدمة
+        loadAchievements();
+        setupSmartReminders();
+        optimizePerformance();
+        
+        // فحص الإنجازات عند كل ذكر
+        const originalIncrementCounter = incrementCounter;
+        incrementCounter = function() {
+            originalIncrementCounter();
+            checkAchievements();
+        };
+        
+        // ===== الميزات الجديدة والمتطورة =====
+        
+        // تحميل الإحصائيات المتقدمة
+        function loadAdvancedStats() {
+            const savedStats = JSON.parse(localStorage.getItem('ajjar_advanced_stats') || '{}');
+            advancedStats = { ...advancedStats, ...savedStats };
+        }
+        
+        // تحديث الإحصائيات المتقدمة
+        function updateAdvancedStats() {
+            const now = new Date();
+            const hour = now.getHours();
+            
+            // تحديث الإحصائيات حسب الوقت
+            if (hour >= 5 && hour < 12) {
+                advancedStats.categories.morning++;
+            } else if (hour >= 12 && hour < 17) {
+                advancedStats.categories.afternoon++;
+            } else if (hour >= 17 && hour < 21) {
+                advancedStats.categories.evening++;
+            } else {
+                advancedStats.categories.night++;
+            }
+            
+            advancedStats.totalDhikr++;
+            
+            // حفظ الإحصائيات
+            localStorage.setItem('ajjar_advanced_stats', JSON.stringify(advancedStats));
+        }
+        
+        // تحديث الإحصائيات في الوقت الفعلي
+        function updateRealTimeStats() {
+            const statsCards = document.querySelectorAll('.stats-card');
+            statsCards.forEach(card => {
+                card.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }
+        
+        // إعداد التذكيرات التلقائية
+        function setupReminders() {
+            if (settings.notifications) {
+                setInterval(() => {
+                    if (counter < target) {
+                        showNotification('تذكر! استمر في الذكر لتحقيق هدفك اليومي', 'info');
+                    }
+                }, settings.reminderInterval * 60 * 1000); // تحويل الدقائق إلى ميلي ثانية
+            }
+        }
+        
+        // تحميل التسبيح
+        async function loadTasbih() {
+            const tasbihData = [
+                { name: 'سبحان الله', count: 0, target: 33 },
+                { name: 'الحمد لله', count: 0, target: 33 },
+                { name: 'الله أكبر', count: 0, target: 33 },
+                { name: 'لا إله إلا الله', count: 0, target: 100 },
+                { name: 'لا حول ولا قوة إلا بالله', count: 0, target: 33 }
+            ];
+            
+            const tasbihHtml = `
+                <div class="card mt-4">
+                    <h3 class="text-lg font-bold mb-3">
+                        <i class="fas fa-praying-hands"></i>
+                        التسبيح اليومي
+                    </h3>
+                    <div class="grid grid-2">
+                        ${tasbihData.map(tasbih => `
+                            <div class="prayer-time-card">
+                                <div class="text-center">
+                                    <div class="text-lg font-bold mb-2">${tasbih.name}</div>
+                                    <div class="text-xl mb-1" id="tasbih-${tasbih.name.replace(/\s+/g, '-')}">${tasbih.count}/${tasbih.target}</div>
+                                    <button class="btn btn-primary btn-sm" onclick="incrementTasbih('${tasbih.name}')">
+                                        <i class="fas fa-plus"></i>
+                                        إضافة
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // إضافة قسم التسبيح إلى الصفحة
+            const mainContent = document.querySelector('.main-content');
+            const tasbihSection = document.createElement('div');
+            tasbihSection.innerHTML = tasbihHtml;
+            mainContent.appendChild(tasbihSection);
+        }
+        
+        // زيادة التسبيح
+        function incrementTasbih(tasbihName) {
+            const key = `tasbih_${tasbihName.replace(/\s+/g, '_')}`;
+            const currentCount = parseInt(localStorage.getItem(key) || '0');
+            const newCount = currentCount + 1;
+            
+            localStorage.setItem(key, newCount.toString());
+            
+            const displayElement = document.getElementById(`tasbih-${tasbihName.replace(/\s+/g, '-')}`);
+            if (displayElement) {
+                displayElement.textContent = `${newCount}/33`;
+                
+                // تأثير بصري
+                displayElement.style.color = '#48bb78';
+                setTimeout(() => {
+                    displayElement.style.color = '';
+                }, 500);
+            }
+            
+            showNotification(`تم إضافة ${tasbihName}`, 'success');
+        }
+        
+        // رسالة ترحيب ذكية
+        function showWelcomeMessage() {
+            const hour = new Date().getHours();
+            let greeting = '';
+            
+            if (hour >= 5 && hour < 12) {
+                greeting = 'صباح الخير! بداية يوم طيبة مع الذكر';
+            } else if (hour >= 12 && hour < 17) {
+                greeting = 'مساء الخير! وقت مثالي للذكر';
+            } else if (hour >= 17 && hour < 21) {
+                greeting = 'مساء الخير! استمر في الذكر';
+            } else {
+                greeting = 'ليلة طيبة! ذكر جميل قبل النوم';
+            }
+            
+            setTimeout(() => {
+                showNotification(greeting, 'info');
+            }, 1000);
+        }
+        
+        // تحسين الإعدادات
+        function loadSettings() {
+            const saved = localStorage.getItem('ajjar_settings');
+            if (saved) {
+                settings = { ...settings, ...JSON.parse(saved) };
+            }
+            
+            // تحديث واجهة الإعدادات
+            document.getElementById('notificationsEnabled').checked = settings.notifications;
+            document.getElementById('vibrationEnabled').checked = settings.vibration;
+            document.getElementById('locationSelect').value = settings.location;
+            
+            // إضافة خيارات جديدة للإعدادات
+            const settingsModal = document.querySelector('#settingsModal .modal-content');
+            const newSettingsHtml = `
+                <div class="grid grid-2 mt-4">
+                    <div>
+                        <h4 class="font-semibold mb-2">الأهداف اليومية</h4>
+                        <input type="number" id="dailyGoal" class="btn btn-secondary w-full" value="${settings.dailyGoal}" min="1" max="1000">
+                        <label class="block text-sm mt-1">عدد الأذكار اليومية</label>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">التذكيرات</h4>
+                        <input type="number" id="reminderInterval" class="btn btn-secondary w-full" value="${settings.reminderInterval}" min="5" max="120">
+                        <label class="block text-sm mt-1">دقائق بين التذكيرات</label>
+                    </div>
+                </div>
+                <div class="grid grid-2 mt-4">
+                    <div>
+                        <h4 class="font-semibold mb-2">التأثيرات</h4>
+                        <label class="block mb-2">
+                            <input type="checkbox" id="soundEnabled" ${settings.soundEnabled ? 'checked' : ''}> تفعيل الأصوات
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" id="hapticFeedback" ${settings.hapticFeedback ? 'checked' : ''}> تفعيل الاهتزاز
+                        </label>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">الحفظ التلقائي</h4>
+                        <label class="block mb-2">
+                            <input type="checkbox" id="autoSave" ${settings.autoSave ? 'checked' : ''}> حفظ تلقائي
+                        </label>
+                    </div>
+                </div>
+            `;
+            
+            // إضافة الإعدادات الجديدة
+            const existingGrid = settingsModal.querySelector('.grid.grid-2');
+            if (existingGrid) {
+                existingGrid.insertAdjacentHTML('afterend', newSettingsHtml);
+            }
+        }
+        
+        // حفظ الإعدادات المحسنة
+        function saveSettings() {
+            settings.notifications = document.getElementById('notificationsEnabled').checked;
+            settings.vibration = document.getElementById('vibrationEnabled').checked;
+            settings.location = document.getElementById('locationSelect').value;
+            settings.dailyGoal = parseInt(document.getElementById('dailyGoal').value) || 100;
+            settings.reminderInterval = parseInt(document.getElementById('reminderInterval').value) || 30;
+            settings.soundEnabled = document.getElementById('soundEnabled').checked;
+            settings.hapticFeedback = document.getElementById('hapticFeedback').checked;
+            settings.autoSave = document.getElementById('autoSave').checked;
+            
+            // تحديث الهدف اليومي
+            target = settings.dailyGoal;
+            updateProgress();
+            updateProgressEnhanced();
+            
+            localStorage.setItem('ajjar_settings', JSON.stringify(settings));
+            closeSettings();
+            showNotification('تم حفظ الإعدادات بنجاح', 'success');
+        }
+        
+        // تحسين الإشعارات
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            // إضافة أيقونة حسب النوع
+            const icon = type === 'success' ? 'fas fa-check-circle' : 
+                        type === 'error' ? 'fas fa-exclamation-circle' : 
+                        type === 'warning' ? 'fas fa-exclamation-triangle' : 
+                        'fas fa-info-circle';
+            
+            notification.innerHTML = `<i class="${icon}"></i> ${message}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+
+            // إرسال إشعار للمتصفح إذا كان مسموحاً
+            if ('Notification' in window && Notification.permission === 'granted' && settings.notifications) {
+                new Notification('آجر', {
+                    body: message,
+                    icon: '/icons/icon-192x192.png',
+                    badge: '/icons/icon-72x72.png',
+                    tag: 'ajjar-notification'
+                });
+            }
+        }
+        
+        // تحسين حفظ العداد
+        function saveCounter() {
+            const today = new Date().toDateString();
+            const savedStats = JSON.parse(localStorage.getItem('ajjar_stats') || '{}');
+            const totalCount = parseInt(localStorage.getItem('ajjar_total_count') || '0');
+            
+            // حفظ العداد اليومي
+            localStorage.setItem('ajjar_counter', counter.toString());
+            
+            // تحديث الإحصائيات
+            savedStats[today] = { count: counter, date: today };
+            localStorage.setItem('ajjar_stats', JSON.stringify(savedStats));
+            
+            // تحديث العدد الإجمالي
+            localStorage.setItem('ajjar_total_count', (totalCount + 1).toString());
+            
+            // تحديث الأيام المتتالية
+            updateStreak();
+            
+            // تحديث الإحصائيات
+            loadStats();
+            
+            // حفظ تلقائي إذا كان مفعلاً
+            if (settings.autoSave) {
+                showNotification('تم الحفظ تلقائياً', 'info');
+            }
+        }
     </script>
 </body>
 </html>
