@@ -1,0 +1,38 @@
+{
+  "name": "ajjar-app",
+  "version": "1.0.0",
+  "description": "تطبيق آجر - تطبيق شامل للذكر والأدعية والقرآن الكريم ومواقيت الصلاة",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "dev": "live-server .",
+    "build": "echo 'No build step required'",
+    "deploy": "echo 'Deploy to your preferred platform'"
+  },
+  "keywords": [
+    "pwa",
+    "islamic",
+    "prayer",
+    "quran",
+    "dhikr",
+    "arabic",
+    "muslim"
+  ],
+  "author": "آجر",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ajjar-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ajjar-app/issues"
+  },
+  "homepage": "https://yourusername.github.io/ajjar-app",
+  "devDependencies": {
+    "serve": "^14.2.0",
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
